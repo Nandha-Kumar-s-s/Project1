@@ -18,10 +18,12 @@ const allOptions = [
 ];
 
 const ManageColumn = () => {
-  const initialConfig = [{ selectedOptions: [] }];
+  const initialLevels = [{ selectedOptions: [] }];
 
-  const [levels, setLevels] = useState(initialConfig);
-  const { config, setConfig } = useContext(ReportContext);
+  const [levels, setLevels] = useState(initialLevels);
+  const { config, setConfig, initialConfig } = useContext(ReportContext);
+
+
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -41,8 +43,8 @@ const ManageColumn = () => {
   };
 
   const resetLevels = () => {
-    setLevels(initialConfig);
-    setConfig({ defaultReportApiUrl: "http://localhost:3001/api/data", reportGroups: [] });
+    setLevels(initialLevels);
+    setConfig(initialConfig);
   };
 
   const applyChanges = () => {
@@ -59,6 +61,7 @@ const ManageColumn = () => {
       })),
     };
     setConfig(config);
+    setIsModalOpen(false);
   };
 
   const saveChanges = () => {
@@ -69,6 +72,8 @@ const ManageColumn = () => {
   const getRemainingOptions = () => {
     return allOptions.filter(option => !usedOptions.includes(option.value));
   };
+
+  console.log("levels", levels);
 
   return (
     <div className="app-container">
@@ -110,7 +115,9 @@ const ManageColumn = () => {
               <button onClick={addLevel} disabled={getRemainingOptions().length === 0} className="button">Add Level</button>
             </div>
             <div className="right-buttons">
-              <button onClick={applyChanges} className="button">Apply</button>
+              <button onClick={applyChanges} className={levels.every(level => level.selectedOptions.length === 0) ? "button-disabled" : "button"}
+                disabled = {levels.every(level => level.selectedOptions.length === 0)}
+              >Apply</button>
               <button onClick={saveChanges} className="button">Save</button>
             </div>
           </div>

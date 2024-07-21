@@ -94,6 +94,14 @@
     cursor: pointer;
     border-radius: 20px;
   }
+  .button-disabled {
+    background-color: grey;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: not-allowed;
+  }
   
   .right-buttons .button:nth-child(1){
     background-color: black;
