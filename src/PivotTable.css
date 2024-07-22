@@ -1,0 +1,35 @@
+/* Add your CSS here */
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid black;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  
+  th {
+    cursor: pointer;
+  }
+  
+  th:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .expandable {
+    cursor: pointer;
+  }
+  
+  .expandable:hover {
+    background-color: #f1f1f1;
+  }
+  
+  table thead th {
+    border: none;
+  }
+  
+  table thead tr:first-child th {
+    border-bottom: 2px solid #ddd; /* Add bottom border for the first row of headers */
+  }
